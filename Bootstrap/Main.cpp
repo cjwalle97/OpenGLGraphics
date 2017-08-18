@@ -8,12 +8,15 @@
 #include <glm\ext.hpp>
 #include "gl_core_4_4.h"
 #include <iostream>
+#include "IntroductionApp.h"
 using glm::vec2;
 using glm::vec3;
 using glm::mat4;
 
 int main()
 {
+	auto app = new IntroductionApp();
+
 	glm::vec3 v = glm::vec3(1, 1, 1);
 
 	if (!glfwInit())
@@ -57,6 +60,14 @@ int main()
 			Gizmos::destroy();
 			glfwSetWindowShouldClose(window, true);
 		}
+		if (glfwGetKey(window, GLFW_KEY_F))
+		{
+			clearcolor.r -= .1f;
+			clearcolor.g -= 1.f;
+			clearcolor.b -= 1.f;
+			printf("clearcolor r => %f\n", clearcolor.r);
+		}
+		glClearColor(clearcolor.r, clearcolor.g, clearcolor.b, clearcolor.a);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
